@@ -10,8 +10,8 @@ import random
 import pickle
 
 from dataset import StateData
-from model2 import Backbone, TanH_Decoder, Relu_Decoder, Sigmoid_Decoder, PrePropertyModel_ablation
-from util import LossCriterion, TestLossCriterion, TestLossCriterion_ablation
+from model import Backbone, TanH_Decoder,  PrePropertyModel_ablation
+from util import LossCriterion, TestLossCriterion_ablation
 
 num_states = 4096
 num_qubits = 9
@@ -63,8 +63,6 @@ lr = 0.0001
 epochs = 1
 optimizer = torch.optim.Adam(model.parameters(), lr=lr)
 batch_size = 10
-best_loss = 30
-best_test_loss = 0.1
 
 try:
     model.load_state_dict(torch.load(
