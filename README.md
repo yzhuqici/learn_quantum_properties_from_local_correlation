@@ -13,3 +13,7 @@ This repository contains the following Python files, each serving a specific pur
 - **main_herisenberg_small2large.py**: This file generalizes the model to quantum systems of larger sizes.
 
 - **util.py**: This file contains the code for specific loss functions used in different scenarios.
+
+- **9qubit.rar**: This file contains the data for learning ground states of the Cluster-Ising model.
+
+- **Heisenberg.rar**: This file contains the data for learning ground states of the XXZ model.
