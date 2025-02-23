@@ -28,12 +28,6 @@ class StateData(Dataset):
         output_properties = []
         h1h2 = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_h1h2s.npy').reshape(4096,-1)
 
-        correlation_xs = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_correlation_xs_values.npy').real.reshape((4096,-1))
-        correlation_zs = np.load(str(num_qubits) + 'qubit/' + str(num_qubits) + 'qubit_correlation_zs_values.npy').real.reshape((4096,-1))
-
-        # Px_exps = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_Paulix_expct_values.npy').real.reshape((4096,-1))
-        # Pzxz_exps = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_Paulizxz_expct_values.npy').real.reshape((4096,-1))
-
         P2x_exps = np.load(
             str(num_qubits) + 'qubit/' + str(num_qubits) + 'qubit_two_point_Paulix_expct_values.npy').real
         P2z_exps = np.load(
@@ -43,29 +37,19 @@ class StateData(Dataset):
         phase_values = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_phase_values.npy').reshape(4096)
 
         entropies = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_entanglement_entropies.npy').real.reshape((4096,-1))
-        # RMIs = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_RMI.npy').real.reshape((4096,-1))
-        # inter_entropies = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_inter_entanglement.npy').real.reshape((4096,-1))
-        target_fidelities = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_target_fidelities.npy').real.reshape((4096,-1))
 
         for i in range(64, num_states):
             properties = {}
 
-            # properties['Px_exps'] = Px_exps[i]
-            # properties['Pzxz_exps'] = Pzxz_exps[i]
-            properties['correlation_xs'] = correlation_xs[i]
-            properties['correlation_zs'] = correlation_zs[i]
             properties['P2x_exps'] = P2x_exps[i]
             properties['P2z_exps'] = P2z_exps[i]
 
             properties['entropies'] = entropies[i]
-            # properties['RMIs'] = RMIs[i]
-            # properties['inter_entropies'] = inter_entropies[i]
 
             properties['phase_label'] = phase_labels[i]
             properties['phase_value'] = phase_values[i]
             properties['h1h2'] = h1h2[i]
 
-            # properties['target_fidelities'] = target_fidelities[i]
 
             output_properties.append(properties)
         self.output_properties = np.array(output_properties)
@@ -102,44 +86,24 @@ class StateXXZZData(Dataset):
         output_properties = []
         h1h2 = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_h1h2h3s.npy').reshape(64*64*16,-1)
 
-        # correlation_xs = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_correlation_xs_values.npy').real.reshape((4096,-1))
-        # correlation_zs = np.load(str(num_qubits) + 'qubit/' + str(num_qubits) + 'qubit_correlation_zs_values.npy').real.reshape((4096,-1))
-
-        # Px_exps = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_Paulix_expct_values.npy').real.reshape((4096,-1))
-        # Pzxz_exps = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_Paulizxz_expct_values.npy').real.reshape((4096,-1))
-
         P2x_exps = np.load(
             str(num_qubits) + 'qubit/' + str(num_qubits) + 'qubit_two_point_Paulix_expct_values_xx_zz.npy').real
         P2z_exps = np.load(
             str(num_qubits) + 'qubit/' + str(num_qubits) + 'qubit_two_point_Pauliz_expct_values_xx_zz.npy').real
 
-        # phase_labels = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_phase_labels.npy').reshape(4096)
         phase_values = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_phase_values_xx_zz.npy').reshape(64*64*16)
 
         entropies = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_entanglement_entropies_xx_zz.npy').real.reshape((64*64*16,-1))
-        # RMIs = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_RMI.npy').real.reshape((4096,-1))
-        # inter_entropies = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_inter_entanglement.npy').real.reshape((4096,-1))
-        # target_fidelities = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_target_fidelities.npy').real.reshape((4096,-1))
 
         for i in range(64*16, num_states):
             properties = {}
 
-            # properties['Px_exps'] = Px_exps[i]
-            # properties['Pzxz_exps'] = Pzxz_exps[i]
-            # properties['correlation_xs'] = correlation_xs[i]
-            # properties['correlation_zs'] = correlation_zs[i]
             properties['P2x_exps'] = P2x_exps[i]
             properties['P2z_exps'] = P2z_exps[i]
-
             properties['entropies'] = entropies[i]
-            # properties['RMIs'] = RMIs[i]
-            # properties['inter_entropies'] = inter_entropies[i]
 
-            # properties['phase_label'] = phase_labels[i]
             properties['phase_value'] = phase_values[i]
             properties['h1h2'] = h1h2[i]
-
-            # properties['target_fidelities'] = target_fidelities[i]
 
             output_properties.append(properties)
         self.output_properties = np.array(output_properties)
@@ -182,21 +146,14 @@ class HeisenbergData(Dataset):
         output_properties = []
 
         P2x_exps = np.squeeze(np.load("Heisenberg/two_point_xs_"+str(num_qubits) + 'qubits.npy'))
-        # P2x_exps2 = np.squeeze(np.load("Heisenberg/two_point2_xs_"+str(num_qubits) + 'qubits.npy'))
-        # P2x_exps = np.concatenate((P2x_exps,P2x_exps2),axis=1)
-
         P2z_exps = np.squeeze(np.load("Heisenberg/two_point_zs_"+str(num_qubits) + 'qubits.npy'))
-        # P2z_exps2 = np.squeeze(np.load("Heisenberg/two_point2_zs_"+str(num_qubits) + 'qubits.npy'))
-        # P2z_exps = np.concatenate((P2z_exps, P2z_exps2), axis=1)
+
         if num_qubits == 50:
             RMIs = np.squeeze(np.load("Heisenberg/RMIs_"+str(num_qubits) + 'qubits.npy'))[:,0]
         else:
             RMIs = np.squeeze(np.load("Heisenberg/RMIs_" + str(num_qubits) + 'qubits.npy'))
         RMI2s = np.squeeze(np.load("Heisenberg/RMI2s_" + str(num_qubits) + 'qubits.npy'))
 
-        # fidelities = np.squeeze(np.load("Heisenberg/fidelities_"+str(num_qubits) + 'qubits.npy'))
-
-        # phase_labels = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_phase_labels.npy').reshape(4096)
         if num_qubits == 50:
             indices = list(range(1, 64, 3))
             ZR_values = np.load('Heisenberg/'+str(num_qubits)+'_ZR_values.npy').reshape(64, 64)
@@ -216,34 +173,20 @@ class HeisenbergData(Dataset):
                 jpdeltas.append([J_p,delta])
         jpdeltas = np.array(jpdeltas)
 
-        #
-        # entropies = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_entanglement_entropies.npy').real.reshape((4096,-1))
-        # RMIs = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_RMI.npy').real.reshape((4096,-1))
-        # inter_entropies = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_inter_entanglement.npy').real.reshape((4096,-1))
-        # target_fidelities = np.load(str(num_qubits)+'qubit/' + str(num_qubits) +'qubit_target_fidelities.npy').real.reshape((4096,-1))
-
         for i in range(0, num_states):
             properties = {}
 
             properties['P2x_exps'] = P2x_exps[i]
             properties['P2z_exps'] = P2z_exps[i]
-            # properties['correlation_xs'] = correlation_xs[i]
-            # properties['correlation_zs'] = correlation_zs[i]
-            #
-            # properties['entropies'] = entropies[i]
             properties['RMIs'] = RMIs[i]
             properties['RMI2s'] = RMI2s[i]
-            # properties['inter_entropies'] = inter_entropies[i]
-            #
-            # properties['phase_label'] = phase_labels[i]
+
             try:
                 properties['phase_value'] = phase_values[i]
             except:
                 pass
             properties['jpdelta'] = jpdeltas[i]
-            #
-            # properties['target_fidelities'] = target_fidelities[i]
-            # properties['fidelities'] = fidelities[i]
+
             output_properties.append(properties)
         self.output_properties = np.array(output_properties)
 
